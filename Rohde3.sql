@@ -4,10 +4,12 @@
 
 --1. List the ID, name, salary of all instructors whose salary is greater than every average salary of every department
 select id, name, salary
-    from instructor i
-    where salary > (select avg(salary)
-                    from instructor
-                    where dept_name = i.dept_name);
+    from instructor
+    where salary > all (
+        select avg(salary)
+	from instructor
+	group by dept_name
+    );
 
 
 --2. List the ID, name, and course_id of all students enrolled in Fall 2017
