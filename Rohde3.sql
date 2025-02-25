@@ -8,6 +8,7 @@ select id, name, salary
     where salary > all (
         select avg(salary)
 	    from instructor
+	    group by dept_name
     );
 
 
